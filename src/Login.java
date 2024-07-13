@@ -1,4 +1,10 @@
+import Db.Connection_instance;
+import Db.User;
+
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Login extends JFrame{
     JFrame frame = new JFrame();
@@ -33,14 +39,29 @@ public class Login extends JFrame{
         loginButton.addActionListener(e -> {
             String user = userField.getText();
             String password = passwordField.getText();
-            if(user.equals("admin") && password.equals("admin"))
-            {
+
+            Connection con = new Connection_instance().get_connection();
+
+            try {
+                PreparedStatement stmt = con.prepareStatement("select * from user where name = ? and password = ?");
+                stmt.setString(1,user);
+                stmt.setString(2,password);
+                ResultSet rs =  stmt.executeQuery();
+                if(!rs.next())
+                {
+                    JOptionPane.showMessageDialog(null, "Login Failed");
+                    return;
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Login Successful");
+                new Deshboard(new User(rs.getString("name"),rs.getString("email"),rs.getString("password"),rs.getString("role")));
+
+                }
                 JOptionPane.showMessageDialog(null, "Login Successful");
-            }
-            else
-            {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Login Failed");
             }
+
         });
         frame.setVisible(true);
     }

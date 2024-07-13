@@ -7,6 +7,8 @@ User user ;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
+    JLabel user_details = new JLabel();
+
     JLabel userLabel = new JLabel("Username");
     JLabel passwordLabel = new JLabel("Password");
     JTextField userField = new JTextField();
@@ -34,7 +36,9 @@ User user ;
 
         passwordLabel.setBounds(10, 50, 80, 25);
         panel.add(passwordLabel);
-
+        user_details.setBounds(10, 0, 80, 25);
+        user_details.setText(current_user.getName());
+panel.add(user_details);
 
 
         passwordField.setBounds(100, 50, 165, 25);

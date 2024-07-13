@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Db/Add_User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Db/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Db/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Db/Connection_instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Connection_instance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Signup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signup.java" afterDir="false" />
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="user auth">
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +80,15 @@
       <option name="presentableId" value="Default" />
       <updated>1720805304354</updated>
     </task>
+    <task id="LOCAL-00001" summary="user auth">
+      <option name="closed" value="true" />
+      <created>1720900227993</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720900227993</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,5 +101,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="user auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="user auth" />
   </component>
 </project>
