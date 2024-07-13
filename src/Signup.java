@@ -1,6 +1,11 @@
-import javax.swing.*;
+import Db.Add_User;
+import Db.Connection_instance;
 
-public class Signup extends JFrame{
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class Signup extends JFrame {
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel userLabel = new JLabel("Username");
@@ -59,14 +64,37 @@ public class Signup extends JFrame{
             {
                 JOptionPane.showMessageDialog(null, "Passwords do not match");
             }
+
             else
             {
-                JOptionPane.showMessageDialog(null, "Signup Successful");
+              if(!checkEmail(email)) {
+                  JOptionPane.showMessageDialog(null, "Signup Successful");
+                  new Add_User().add_user(user, email, password, "user");
+              }
+              else {
+                  userField.setText("");
+                    passwordField.setText("");
+                    confirmPasswordField.setText("");
+                    EmailField.setText("");
+              }
             }
         });
         frame.setVisible(true);
     }
-
+boolean checkEmail(String email)
+{
+    try (Connection con = new Connection_instance().get_connection()) {
+        PreparedStatement pst = con.prepareStatement("select * from user where email = ?");
+        pst.setString(1, email);
+        if(pst.executeQuery().next())
+        {
+            JOptionPane.showMessageDialog(null, "Email already exists");
+            return true;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }return  false;
+}
     public static void main(String[] args) {
         new Signup();
     }

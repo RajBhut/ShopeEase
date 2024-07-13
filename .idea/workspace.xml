@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gui.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Db/Connection_instance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Deshboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Signup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Db/Add_User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Db/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Db/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Db/Connection_instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Connection_instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Signup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +46,13 @@
     "Application.Signup.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "359",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java"
+    "last_opened_file_path": "C:/Users/Admin/Downloads/MySqlJdbcDriver/mysql-connector-j-8.3.0.jar",
+    "onboarding.tips.debug.path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="RunManager">

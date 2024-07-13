@@ -1,6 +1,9 @@
+import Db.User;
+
 import javax.swing.*;
 //want to add nav bar and add their some option like profile etc
 public class Deshboard extends JFrame {
+User user ;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
@@ -17,7 +20,7 @@ public class Deshboard extends JFrame {
     JButton contactButton = new JButton("Contact");
     JButton feedbackButton = new JButton("Feedback");
     JButton exitButton = new JButton("Exit");
-    Deshboard() {
+    Deshboard(User current_user) {
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
@@ -97,7 +100,7 @@ public class Deshboard extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Deshboard();
+        new Deshboard(new User("admin","admin","admin","admin"));
     }
 
 
