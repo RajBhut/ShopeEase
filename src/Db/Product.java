@@ -3,6 +3,7 @@ package Db;
 import java.util.ArrayList;
 
 public class Product {
+    String imagePath;
     int discount;
     String name;
     int price;
@@ -18,13 +19,15 @@ String removeTag(String tag)
     tags.remove(tag);
     return tag;
 }
-    public Product(String name, int price, int quantity, int id, ArrayList<String> tags) {
+    public Product(String name, int price, int quantity, int id, ArrayList<String> tags , int discount, String imagePath) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.id = id;
         this.tags = tags;
-}
+        this.discount = discount;
+        this.imagePath = imagePath;
+    }
     public ArrayList<String> getTags() {
         return tags;
     }
@@ -46,6 +49,14 @@ String removeTag(String tag)
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public String getName() {

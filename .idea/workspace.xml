@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="user auth">
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="user auth 2">
+      <change afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Db/Add_Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/blue-t-shirt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/half-blue-half-green-background-with-earrings-and-a-ring.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/purple-t-shirt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/red-moon-and-stars.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/stacked-bracelets-set.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/wood-leather-watches.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Db/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,18 +48,27 @@
     "Application.Deshboard.executor": "Run",
     "Application.Login.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.ProductCard.executor": "Run",
     "Application.Signup.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "359",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Admin/Downloads/MySqlJdbcDriver/mysql-connector-j-8.3.0.jar",
+    "last_opened_file_path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/resorce",
     "onboarding.tips.debug.path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Desktop\javarepo\Blinknotes\gui\src\resorce" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\OneDrive\Desktop\javarepo\Blinknotes\gui\src\resorce" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -88,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720900227993</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="user auth 2">
+      <option name="closed" value="true" />
+      <created>1720901420746</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720901420746</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="user auth" />
+    <MESSAGE value="user auth 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="user auth 2" />
   </component>
 </project>
