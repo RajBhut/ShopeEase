@@ -5,6 +5,7 @@ import Db.Product;
 import Db.User;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,44 +27,39 @@ public class Deshboard extends JFrame {
     JButton exitButton = new JButton("Exit");
 
     public Deshboard(User current_user) {
-        frame.setSize(400, 200);
+        frame.setSize(800, 800);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        frame.setLayout(new BorderLayout());
+        frame.getContentPane().setBackground(Color.LIGHT_GRAY);
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.X_AXIS));
 
-        user_details.setText(current_user.getName());
-        panel.add(user_details);
+        // Add buttons to menuPanel
+        menuPanel.add(profileButton);
+        menuPanel.add(logoutButton);
+        menuPanel.add(settingButton);
+        menuPanel.add(helpButton);
+        menuPanel.add(aboutButton);
+        menuPanel.add(contactButton);
+        menuPanel.add(feedbackButton);
+        menuPanel.add(exitButton);
 
-        panel.add(profileButton);
-        profileButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Profile"));
+        frame.add(menuPanel, BorderLayout.SOUTH);
 
-        panel.add(logoutButton);
-        logoutButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Logout"));
+        JPanel productPanel = new JPanel();
+        productPanel.setLayout(new GridLayout(0, 3)); // Change 3 to the number of columns you want
 
-        panel.add(settingButton);
-        settingButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Setting"));
-
-        panel.add(helpButton);
-        helpButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Help"));
-
-        panel.add(aboutButton);
-        aboutButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "About"));
-
-        panel.add(contactButton);
-        contactButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Contact"));
-
-        panel.add(feedbackButton);
-        feedbackButton.addActionListener(e -> JOptionPane.showMessageDialog(null, "Feedback"));
-
-        panel.add(exitButton);
-        exitButton.addActionListener(e -> System.exit(0));
-
-        // Assuming you have a method that returns a list of products
         ArrayList<Product> products = getProducts();
         for (int i = 0 ; i<products.size();i++) {
-            ProductCard productCard = new ProductCard( products.get(i));
-            panel.add(productCard);
+            ProductCard productCard = new ProductCard(products.get(i));
+            productCard.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+
+            productPanel.add(productCard);
         }
+
+        frame.add(productPanel, BorderLayout.CENTER);
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,7 +87,7 @@ try{
             }
         }
         Product product = new Product(rs1.getString("name"),rs1.getInt("price"),rs1.getInt("quantity"),rs1.getInt("id"),tags,rs1.getInt("discount"),rs1.getString("imagePath"));
-        System.out.println(product);
+
         products.add(product);
     }
     return products;

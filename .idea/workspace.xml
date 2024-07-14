@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="user auth 2">
-      <change afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Db/Add_Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/blue-t-shirt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/half-blue-half-green-background-with-earrings-and-a-ring.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/purple-t-shirt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/red-moon-and-stars.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/stacked-bracelets-set.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/wood-leather-watches.jpg" afterDir="false" />
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add product v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Db/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Componant/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Componant/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +107,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720901420746</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add product v1">
+      <option name="closed" value="true" />
+      <created>1720959192151</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720959192151</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +132,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="user auth" />
     <MESSAGE value="user auth 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="user auth 2" />
+    <MESSAGE value="add product v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="add product v1" />
   </component>
 </project>
