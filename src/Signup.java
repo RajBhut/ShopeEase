@@ -1,5 +1,7 @@
+import Componant.Deshboard;
 import Db.Add_User;
 import Db.Connection_instance;
+import Db.User;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -70,6 +72,7 @@ public class Signup extends JFrame {
               if(!checkEmail(email)) {
                   JOptionPane.showMessageDialog(null, "Signup Successful");
                   new Add_User().add_user(user, email, password, "user");
+                  new Deshboard(new User(user, email, password, "user"));
               }
               else {
                   userField.setText("");
@@ -95,7 +98,5 @@ boolean checkEmail(String email)
         e.printStackTrace();
     }return  false;
 }
-    public static void main(String[] args) {
-        new Signup();
-    }
+
 }

@@ -19,7 +19,7 @@ public class Login extends JFrame{
     Login()
     {
         frame.setSize(400, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.add(panel);
         panel.setLayout(null);
 
@@ -67,7 +67,5 @@ public class Login extends JFrame{
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new Login();
-    }
+
 }

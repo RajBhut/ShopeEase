@@ -28,7 +28,7 @@ public class Add_Product
 
             stmt.executeUpdate();
 
-            Product product = new Product(name,price,quantity,id,tags,discount,imagePath);
+            Product product = new Product(name,price,quantity,tags,discount,imagePath);
 
             con.commit();
         } catch (SQLException e) {

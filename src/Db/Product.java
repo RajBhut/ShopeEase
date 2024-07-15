@@ -19,11 +19,11 @@ String removeTag(String tag)
     tags.remove(tag);
     return tag;
 }
-    public Product(String name, int price, int quantity, int id, ArrayList<String> tags , int discount, String imagePath) {
+    public Product(String name, int price, int quantity, ArrayList<String> tags , int discount, String imagePath) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.id = id;
+
         this.tags = tags;
         this.discount = discount;
         this.imagePath = imagePath;
@@ -39,7 +39,7 @@ String removeTag(String tag)
         return price;
     }
 
-    public void setPrice(int price) {
+        public void setPrice(int price) {
         this.price = price;
     }
 

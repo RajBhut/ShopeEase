@@ -45,12 +45,14 @@ public class ProductCard extends JPanel {
         addToWishlistButton = new JButton("Add to Wishlist");
 
         addToWishlistButton.setFont(new Font("Arial", Font.BOLD, 10 )); // Set font name to Arial, style to BOLD, and size to 10
-addToWishlistButton.setBorder(new EmptyBorder(5, 1, 5, 1));
-addToCartButton.setBorder(new EmptyBorder(5, 1, 5, 1));
+        addToWishlistButton.setBorder(new EmptyBorder(5, 1, 5, 1));
+        addToCartButton.setBorder(new EmptyBorder(5, 1, 5, 1));
         // Add components to details panel
         detailsPanel.add(titleLabel, BorderLayout.NORTH);
         detailsPanel.add(priceLabel, BorderLayout.SOUTH);
         detailsPanel.add(addToCartButton, BorderLayout.WEST);
+        detailsPanel.add(Box.createRigidArea(new Dimension(10, 5)), BorderLayout.CENTER);
+
         detailsPanel.add(addToWishlistButton, BorderLayout.EAST);
 
         gbc.gridx = 0;
