@@ -37,6 +37,7 @@ public class Login extends JFrame{
         frame.setResizable(false);
         loginButton.setBounds(10, 80, 80, 25);
         panel.add(loginButton);
+        getRootPane().setDefaultButton(loginButton);
         loginButton.addActionListener(e -> {
             String user = userField.getText();
             String password = passwordField.getText();
@@ -50,22 +51,24 @@ public class Login extends JFrame{
                 ResultSet rs =  stmt.executeQuery();
                 if(!rs.next())
                 {
-                    JOptionPane.showMessageDialog(null, "Login Failed");
+                    JOptionPane.showMessageDialog(this, "Login Failed");
                     return;
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "Login Successful");
+                    JOptionPane.showMessageDialog(this, "Login Successful");
                 new Deshboard(new User(rs.getString("name"),rs.getString("email"),rs.getString("password"),rs.getString("role")));
-
+frame.setVisible(false);
                 }
-                JOptionPane.showMessageDialog(null, "Login Successful");
+
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Login Failed");
+                JOptionPane.showMessageDialog(this, "Login Failed");
             }
 
         });
         frame.setVisible(true);
+        frame.requestFocusInWindow();
     }
+
 
 
 }

@@ -26,6 +26,13 @@ public class Product_add extends JFrame {
     JLabel tagLabel = new JLabel("tag (tag1,tag2...)");
     JTextField tagfield = new JTextField();
     String imagePath = "";
+
+
+    Product_add(boolean is_admin)
+    {
+
+    }
+
     Product_add()
     {
 
@@ -211,20 +218,15 @@ boolean add_tag(String[] tags ,String product_name)
 
         con.commit();
     } catch (SQLException e) {
-//        if (con != null) {
-//            try {
-//                System.err.print("Transaction is being rolled back");
-//                con.rollback();
-//            } catch(SQLException excep) {
-//                excep.printStackTrace();
-//            }   }
+
         e.printStackTrace();
 
     } finally {
         if (con != null) {
             try {
                 con.setAutoCommit(true);
-            } catch (SQLException e) {
+
+                } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -232,6 +234,97 @@ boolean add_tag(String[] tags ,String product_name)
     return  true;
 }
 
+    public void Add_to_Wishlist(String username , String product_name) {
+        try {
+            Connection con = new Connection_instance().get_connection();
+
+            // Get user_id
+            PreparedStatement ps = con.prepareStatement("select id from user where name = ?");
+            ps.setString(1,username);
+            ResultSet rs = ps.executeQuery();
+            int user_id = 0;
+            if (rs.next()) {
+                user_id = rs.getInt("id");
+            }
+            ps.close();
+
+
+            PreparedStatement ps1 = con.prepareStatement("select id from product where name = ?");
+            ps1.setString(1,product_name);
+            ResultSet rs1 = ps1.executeQuery();
+            int product_id = 0;
+            if (rs1.next()) {
+                product_id = rs1.getInt("id");
+            }
+            ps1.close();
+
+
+            PreparedStatement psCheck = con.prepareStatement("select * from wishlist where user_id = ? and product_id = ?");
+            psCheck.setInt(1, user_id);
+            psCheck.setInt(2, product_id);
+            ResultSet rsCheck = psCheck.executeQuery();
+            if (!rsCheck.next()) {
+
+                PreparedStatement ps2 = con.prepareStatement("insert into wishlist (user_id ,product_id ) values (? , ?);");
+                ps2.setInt(1,user_id);
+                ps2.setInt(2,product_id);
+                ps2.execute();
+                ps2.close();
+                JOptionPane.showMessageDialog(null , "Product added to wishlist ");
+            } else {
+                JOptionPane.showMessageDialog(null , "Product already in wishlist ");
+            }
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public  void Add_to_Cart(String username , String product_name) {
+        try {
+            Connection con = new Connection_instance().get_connection();
+
+            PreparedStatement ps = con.prepareStatement("select id from user where name = ?");
+            ps.setString(1,username);
+            ResultSet rs = ps.executeQuery();
+            int user_id = 0;
+            if (rs.next()) {
+                user_id = rs.getInt("id");
+            }
+            ps.close();
+
+
+            PreparedStatement ps1 = con.prepareStatement("select id from product where name = ?");
+            ps1.setString(1,product_name);
+            ResultSet rs1 = ps1.executeQuery();
+            int product_id = 0;
+            if (rs1.next()) {
+                product_id = rs1.getInt("id");
+            }
+            ps1.close();
+
+
+            PreparedStatement psCheck = con.prepareStatement("select * from addcart where user_id = ? and product_id = ?");
+            psCheck.setInt(1, user_id);
+            psCheck.setInt(2, product_id);
+            ResultSet rsCheck = psCheck.executeQuery();
+            if (!rsCheck.next()) {
+
+                PreparedStatement ps2 = con.prepareStatement("insert into addcart (user_id ,product_id ) values (? , ?);");
+                ps2.setInt(1,user_id);
+                ps2.setInt(2,product_id);
+                ps2.execute();
+                ps2.close();
+                JOptionPane.showMessageDialog(null , "Product added to cart ");
+            } else {
+                JOptionPane.showMessageDialog(null , "Product already in cart ");
+            }
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static void main(String[] args) {

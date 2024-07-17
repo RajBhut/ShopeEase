@@ -4,7 +4,8 @@ package Componant;
 import Db.Product;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
+import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 
 
@@ -13,8 +14,8 @@ public class ProductCard extends JPanel {
     private JLabel imageLabel;
     private JLabel titleLabel;
     private JLabel priceLabel;
-    private JButton addToCartButton;
-    private JButton addToWishlistButton;
+    JButton addToCartButton;
+     JButton addToWishlistButton;
 
     public ProductCard(Product product) {
 
@@ -22,7 +23,7 @@ public class ProductCard extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
 
         imageLabel = new JLabel();
-        imageLabel.setPreferredSize(new Dimension(128, 128)); // Set preferred size
+        imageLabel.setPreferredSize(new Dimension(128, 128));
 
         ImageIcon imageIcon = new ImageIcon(product.getImagePath());
         Image image = imageIcon.getImage();
@@ -31,23 +32,34 @@ public class ProductCard extends JPanel {
 
         JPanel detailsPanel = new JPanel(new BorderLayout());
 
-        // Create title label with product name
+
         titleLabel = new JLabel(product.getName());
 
-        // Create price label with formatted price
         priceLabel = new JLabel(  product.getPrice() +"₹");
 
-        // Add to cart button
-        addToCartButton = new JButton("Add to Cart");
-        addToCartButton.setFont(new Font("Arial", Font.BOLD, 10));
 
-        // Add wishlist button
-        addToWishlistButton = new JButton("Add to Wishlist");
+        addToCartButton = new JButton(" Add to Cart ");
+        addToCartButton.setFont(new Font("Arial", Font.BOLD, 13));
+        Border combination = new CompoundBorder(new RoundedBorder(8),new ShadowBorder(3));
 
-        addToWishlistButton.setFont(new Font("Arial", Font.BOLD, 10 )); // Set font name to Arial, style to BOLD, and size to 10
+setBorder(combination);
+        setBackground(Color.white);
+
+
+        addToWishlistButton = new JButton(" Add to Wishlist ");
+
+        addToWishlistButton.setFont(new Font("Arial", Font.BOLD, 13 ));
         addToWishlistButton.setBorder(new EmptyBorder(5, 1, 5, 1));
         addToCartButton.setBorder(new EmptyBorder(5, 1, 5, 1));
-        // Add components to details panel
+
+
+        addToCartButton.setBorder(new RoundedBorder(8));
+        addToCartButton.setMargin(new Insets(15, 15, 15, 15));
+addToWishlistButton.setBorder(new RoundedBorder(8));
+        addToWishlistButton.setMargin(new Insets(15, 15, 15, 15));
+addToWishlistButton.setSize(80,50);
+addToCartButton.setSize(80,50);
+
         detailsPanel.add(titleLabel, BorderLayout.NORTH);
         detailsPanel.add(priceLabel, BorderLayout.SOUTH);
         detailsPanel.add(addToCartButton, BorderLayout.WEST);
@@ -61,5 +73,47 @@ public class ProductCard extends JPanel {
         add(imageLabel, gbc);
         gbc.gridy = 1;
         add(detailsPanel, gbc);
+    }
+}
+class RoundedBorder extends AbstractBorder {
+    private int radius;
+
+    RoundedBorder(int radius) {
+        this.radius = radius;
+    }
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawRoundRect(x, y, width-1, height-1, radius, radius);
+    }
+}
+class ShadowBorder extends AbstractBorder {
+    private int shadowSize;
+
+    ShadowBorder(int shadowSize) {
+        this.shadowSize = shadowSize;
+    }
+
+    @Override
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Create a gradient that goes from transparent to gray
+        GradientPaint paint = new GradientPaint(width - shadowSize, y, new Color(0, 0, 0, 0), width, y, Color.GRAY);
+        g2d.setPaint(paint);
+        g2d.fillRect(width - shadowSize, y, shadowSize, height);
+
+        paint = new GradientPaint(x, height - shadowSize, new Color(0, 0, 0, 0), x, height, Color.GRAY);
+        g2d.setPaint(paint);
+        g2d.fillRect(x, height - shadowSize, width, shadowSize);
+
+        g2d.dispose();
+    }
+
+    @Override
+    public Insets getBorderInsets(Component c) {
+        return new Insets(0, 0, shadowSize, shadowSize);
     }
 }

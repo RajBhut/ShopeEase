@@ -5,6 +5,8 @@ import Db.Product;
 import Db.User;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.Connection;
@@ -29,16 +31,21 @@ public class Deshboard extends JFrame {
     JPanel searchPanel;
     private JPanel productPanel;
     public Deshboard(User current_user) {
+        this.user = current_user;
         frame.setSize(800, 800);
         productPanel = new JPanel();
-        productPanel.setLayout(new GridLayout(0, 3));
+        productPanel.setLayout(new FlowLayout( 1, 5, 5));
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
          menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.X_AXIS));
+profileButton.addActionListener(e->{
+    new Profile(user);
 
-        // Add buttons to menuPanel
+        }) ;
+
         menuPanel.add(profileButton);
         menuPanel.add(logoutButton);
         menuPanel.add(settingButton);
@@ -57,19 +64,32 @@ public class Deshboard extends JFrame {
 
         searchPanel.add(searchButton, BorderLayout.EAST);
         JPanel productPanel = new JPanel();
-        productPanel.setLayout(new GridLayout(0, 3));
+
 
         ArrayList<Product> products = getProducts();
         for (int i = 0 ; i<products.size();i++) {
             ProductCard productCard = new ProductCard(products.get(i));
-            productCard.setBorder(new EmptyBorder(10, 10, 10, 10));
+            productCard.setBorder(new EmptyBorder(10, 5, 10, 5));
 
+            int finalI = i;
+            productCard.addToWishlistButton.addActionListener(e -> {
+                new Product_add(false).Add_to_Wishlist(user.getName(), products.get(finalI).getName());
+
+
+            });
+            productCard.addToCartButton.addActionListener(e -> {
+                new Product_add(false).Add_to_Cart(user.getName(), products.get(finalI).getName());
+
+            });
+            Border combination = new CompoundBorder(new RoundedBorder(8),new ShadowBorder(3));
+
+            productCard.setBorder(combination);
 
             productPanel.add(productCard);
         }
-
+    frame.add(productPanel, BorderLayout.CENTER);
 frame.add(searchPanel, BorderLayout.NORTH);
-        frame.add(productPanel, BorderLayout.CENTER);
+
         searchButton.addActionListener(e->{
             updateProductPanel(getProducts(searchBar.getText()));
         });
@@ -78,24 +98,36 @@ frame.add(searchPanel, BorderLayout.NORTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private void updateProductPanel(ArrayList<Product> products) {
-        // Remove all components from frame
+
         frame.getContentPane().removeAll();
 
-        // Create new productPanel
+
         productPanel = new JPanel();
-        productPanel.setLayout(new GridLayout(0, 3));
+        productPanel.setLayout(new FlowLayout( FlowLayout.LEFT, 5, 5));
         for (Product product : products) {
             ProductCard productCard = new ProductCard(product);
-            productCard.setBorder(new EmptyBorder(10, 10, 10, 10));
+            productCard.addToWishlistButton.addActionListener(e -> {
+                new Product_add(false).Add_to_Wishlist(user.getName(), product.getName());
+
+
+            });
+            productCard.addToCartButton.addActionListener(e->{
+                new Product_add(false).Add_to_Cart(user.getName(), product.getName());
+            });
+            Border combination = new CompoundBorder(new RoundedBorder(10),new ShadowBorder(3));
+
+            productCard.setBorder(combination);
             productPanel.add(productCard);
         }
 
-        // Add menuPanel, searchPanel, and productPanel back to frame
+
+
+
         frame.add(menuPanel, BorderLayout.SOUTH);
         frame.add(searchPanel, BorderLayout.NORTH);
         frame.add(productPanel, BorderLayout.CENTER);
 
-        // Revalidate and repaint frame to reflect changes
+
         frame.revalidate();
         frame.repaint();
     }
