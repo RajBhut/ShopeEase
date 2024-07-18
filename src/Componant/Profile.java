@@ -51,6 +51,45 @@ emailLabel.setText("Email: "+user.getEmail());
         ArrayList<Product> products = get_wishlist_items();
         for (int i = 0; i < products.size(); i++) {
             ProductCard productCard = new ProductCard(products.get(i));
+            productCard.addToWishlistButton.setText("Remove from Wishlist");
+            int finalI = i;
+            productCard.addToWishlistButton.addActionListener(e->{
+                try {
+                    Connection con = new Connection_instance().get_connection();
+                    PreparedStatement pst = con.prepareStatement("select id from user where email = ?");
+                    pst.setString(1,Email);
+                    int user_id = 0;
+                    ResultSet rs = pst.executeQuery();
+                    while (rs.next())
+                    {
+                        user_id = rs.getInt("id");
+                    }
+                    pst = con.prepareStatement("select * from wishlist where user_id = ?");
+                    pst.setInt(1,user_id);
+                    rs = pst.executeQuery();
+                    ArrayList <Integer> wishlist = new ArrayList<>();
+                    while (rs.next())
+                    {
+                        wishlist.add(rs.getInt("product_id"));
+                    }
+                    for (int j = 0; j < wishlist.size(); j++) {
+                        if (products.get(finalI).getName().equals(products.get(j).getName()))
+                        {
+                            pst = con.prepareStatement("delete from wishlist where product_id = ? and user_id = ?");
+                            pst.setInt(1,wishlist.get(j));
+                            pst.setInt(2,user_id);
+                            pst.executeUpdate();
+                            WishlistPanel.remove(productCard);
+                            WishlistPanel.revalidate();
+                            WishlistPanel.repaint();
+                        }
+                    }
+                }
+                catch (Exception e1)
+                {
+                    e1.printStackTrace();
+                }
+            });
             WishlistPanel.add(productCard);
         }  frame.add(panel);
         JLabel wishlistlable = new JLabel("Wishlist" , SwingConstants.CENTER);

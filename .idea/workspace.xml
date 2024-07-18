@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add product v3">
-      <change afterPath="$PROJECT_DIR$/src/Componant/Profile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-carts-facing-each-other.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.eps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componant/Product_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Product_add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Componant/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Profile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,27 +38,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Deshboard.executor": "Run",
-    "Application.Login.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.ProductCard.executor": "Run",
-    "Application.Product_add.executor": "Run",
-    "Application.Profile.executor": "Run",
-    "Application.Signup.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "359",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/resorce",
-    "onboarding.tips.debug.path": "C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "com.github.copilot.settings.ApplicationConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Deshboard.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Login.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProductCard.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Product_add.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Profile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Signup.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;359&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/resorce&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\OneDrive\Desktop\javarepo\Blinknotes\gui\src\resorce" />
@@ -137,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721057886574</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add product v3">
+      <option name="closed" value="true" />
+      <created>1721236762028</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721236762028</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

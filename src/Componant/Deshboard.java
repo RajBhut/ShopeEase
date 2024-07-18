@@ -19,22 +19,23 @@ public class Deshboard extends JFrame {
     User user;
     JFrame frame = new JFrame();
 
-    JButton profileButton = new JButton("Profile");
+    JButton profileButton = new JButton("🙍‍♂ \n  Profile️");
     JButton logoutButton = new JButton("Logout");
-    JButton settingButton = new JButton("Setting");
+    JButton settingButton = new JButton("⚙️ \n settings");
     JButton helpButton = new JButton("Help");
     JButton aboutButton = new JButton("About");
-    JButton contactButton = new JButton("Contact");
+    JButton contactButton = new JButton("📞 \n contect Us");
     JButton feedbackButton = new JButton("Feedback");
-    JButton exitButton = new JButton("Exit");
+    JButton exitButton = new JButton("🚪 \n Exit");
     JPanel menuPanel;
     JPanel searchPanel;
     private JPanel productPanel;
     public Deshboard(User current_user) {
+
         this.user = current_user;
         frame.setSize(800, 800);
         productPanel = new JPanel();
-        productPanel.setLayout(new FlowLayout( 1, 5, 5));
+        productPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -45,7 +46,7 @@ profileButton.addActionListener(e->{
     new Profile(user);
 
         }) ;
-
+        JPanel outerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         menuPanel.add(profileButton);
         menuPanel.add(logoutButton);
         menuPanel.add(settingButton);
@@ -54,16 +55,25 @@ profileButton.addActionListener(e->{
         menuPanel.add(contactButton);
         menuPanel.add(feedbackButton);
         menuPanel.add(exitButton);
+        menuPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+        menuPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+outerPanel.add(menuPanel);
+outerPanel.setBackground(Color.white);
 
-        frame.add(menuPanel, BorderLayout.SOUTH);
+        //frame.add(menuPanel, BorderLayout.CENTER);
          searchPanel = new JPanel(new BorderLayout());
+searchPanel.setPreferredSize(new Dimension(800,40));
         JTextField searchBar = new JTextField();
-        searchBar.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+searchBar.setBorder(  new CompoundBorder(new RoundedBorder(8),new EmptyBorder(10,10,10,10)));
+
         searchPanel.add(searchBar, BorderLayout.CENTER);
+        searchBar.setPreferredSize(new Dimension(500, 20));
         JButton searchButton = new JButton("Search");
+        searchButton.setBorder(new CompoundBorder(new RoundedBorder(8),new EmptyBorder(10,10,10,10)));
 
         searchPanel.add(searchButton, BorderLayout.EAST);
-        JPanel productPanel = new JPanel();
+        JPanel productPanel = new ImagePanel("src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.jpg");
 
 
         ArrayList<Product> products = getProducts();
@@ -87,9 +97,12 @@ profileButton.addActionListener(e->{
 
             productPanel.add(productCard);
         }
-    frame.add(productPanel, BorderLayout.CENTER);
-frame.add(searchPanel, BorderLayout.NORTH);
 
+
+
+frame.add(searchPanel,BorderLayout.NORTH);
+        frame.add(outerPanel,BorderLayout.SOUTH);
+        frame.add(productPanel,BorderLayout.CENTER);
         searchButton.addActionListener(e->{
             updateProductPanel(getProducts(searchBar.getText()));
         });
@@ -101,9 +114,9 @@ frame.add(searchPanel, BorderLayout.NORTH);
 
         frame.getContentPane().removeAll();
 
+        frame.setLayout(new BorderLayout());
+        productPanel = new ImagePanel("src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.jpg");
 
-        productPanel = new JPanel();
-        productPanel.setLayout(new FlowLayout( FlowLayout.LEFT, 5, 5));
         for (Product product : products) {
             ProductCard productCard = new ProductCard(product);
             productCard.addToWishlistButton.addActionListener(e -> {
@@ -114,9 +127,7 @@ frame.add(searchPanel, BorderLayout.NORTH);
             productCard.addToCartButton.addActionListener(e->{
                 new Product_add(false).Add_to_Cart(user.getName(), product.getName());
             });
-            Border combination = new CompoundBorder(new RoundedBorder(10),new ShadowBorder(3));
 
-            productCard.setBorder(combination);
             productPanel.add(productCard);
         }
 
@@ -238,5 +249,69 @@ frame.add(searchPanel, BorderLayout.NORTH);
 
     public static void main(String[] args) {
         new Deshboard(new User("admin","admin","admin","admin"));
+    }
+}
+
+
+class TestPanel extends JPanel {
+    private Color[] colors;
+
+    TestPanel(Color... colors) {
+        this.colors = colors;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        int w = getWidth();
+        int h = getHeight();
+
+        float[] fractions = new float[colors.length];
+        for (int i = 0; i < colors.length; i++) {
+            fractions[i] = (float) i / (colors.length - 1);
+        }
+
+        LinearGradientPaint gp = new LinearGradientPaint(0, 0, w, h, fractions, colors);
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(800, 50);
+    }
+}
+
+class ImagePanel extends JPanel {
+
+    private Image backgroundImage;
+
+    public ImagePanel(String fileName) {
+        backgroundImage = new ImageIcon(fileName).getImage();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+
+        double aspectRatio = (double) backgroundImage.getWidth(this) / backgroundImage.getHeight(this);
+        int panelWidth = this.getWidth();
+        int panelHeight = this.getHeight();
+        int imageWidth;
+        int imageHeight;
+
+        if (panelWidth / aspectRatio < panelHeight) {
+            imageWidth = panelWidth;
+            imageHeight = (int) (panelWidth / aspectRatio);
+        } else {
+            imageWidth = (int) (panelHeight * aspectRatio);
+            imageHeight = panelHeight;
+        }
+
+        // Draw the image at the calculated width and height
+        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
     }
 }

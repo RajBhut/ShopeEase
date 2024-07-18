@@ -40,7 +40,8 @@ public class ProductCard extends JPanel {
 
         addToCartButton = new JButton(" Add to Cart ");
         addToCartButton.setFont(new Font("Arial", Font.BOLD, 13));
-        Border combination = new CompoundBorder(new RoundedBorder(8),new ShadowBorder(3));
+        Border combination = new CompoundBorder(new RoundedBorder(8),new EmptyBorder(5, 5, 5, 5
+        ) );
 
 setBorder(combination);
         setBackground(Color.white);
@@ -53,9 +54,9 @@ setBorder(combination);
         addToCartButton.setBorder(new EmptyBorder(5, 1, 5, 1));
 
 
-        addToCartButton.setBorder(new RoundedBorder(8));
+        addToCartButton.setBorder(combination);
         addToCartButton.setMargin(new Insets(15, 15, 15, 15));
-addToWishlistButton.setBorder(new RoundedBorder(8));
+addToWishlistButton.setBorder(combination);
         addToWishlistButton.setMargin(new Insets(15, 15, 15, 15));
 addToWishlistButton.setSize(80,50);
 addToCartButton.setSize(80,50);
@@ -66,9 +67,9 @@ addToCartButton.setSize(80,50);
         detailsPanel.add(Box.createRigidArea(new Dimension(10, 5)), BorderLayout.CENTER);
 
         detailsPanel.add(addToWishlistButton, BorderLayout.EAST);
-
+detailsPanel.setBorder(new EmptyBorder(5,5,5,5));
         gbc.gridx = 0;
-        gbc.weightx = 1;
+        gbc.weightx = 2;
         gbc.gridy = 0;
         add(imageLabel, gbc);
         gbc.gridy = 1;
