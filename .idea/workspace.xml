@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add product v3">
-      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-carts-facing-each-other.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.eps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.jpg" afterDir="false" />
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add deshboard v2">
+      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Componant/Product_Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SellerSignup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resorce/searchlogo.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Componant/Product_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Product_add.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Db/Add_User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Add_User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Signup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.eps" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +34,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -44,14 +54,16 @@
     &quot;Application.Login.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.ProductCard.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Product_Main.executor&quot;: &quot;Debug&quot;,
     &quot;Application.Product_add.executor&quot;: &quot;Run&quot;,
     &quot;Application.Profile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SellerSignup.executor&quot;: &quot;Run&quot;,
     &quot;Application.Signup.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;359&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/resorce&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Downloads/openjfx-22.0.2_windows-x64_bin-sdk/javafx-sdk-22.0.2/lib&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Admin/OneDrive/Desktop/javarepo/Blinknotes/gui/src/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
@@ -75,6 +87,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Product_Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Componant.Product_Main" />
+      <module name="gui" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Componant.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SellerSignup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SellerSignup" />
+      <module name="gui" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Signup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Signup" />
       <module name="gui" />
@@ -85,6 +117,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SellerSignup" />
+        <item itemvalue="Application.Product_Main" />
         <item itemvalue="Application.Signup" />
       </list>
     </recent_temporary>
@@ -146,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721236762028</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add deshboard v2">
+      <option name="closed" value="true" />
+      <created>1721325476253</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721325476253</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +208,7 @@
     <MESSAGE value="add product v1" />
     <MESSAGE value="add product v2" />
     <MESSAGE value="add product v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add product v3" />
+    <MESSAGE value="add deshboard v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="add deshboard v2" />
   </component>
 </project>

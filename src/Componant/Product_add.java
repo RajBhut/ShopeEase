@@ -36,6 +36,7 @@ public class Product_add extends JFrame {
     Product_add()
     {
 
+
         frame.setSize(400, 400); // Increase the height of the frame to fit all components
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);

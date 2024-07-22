@@ -17,7 +17,7 @@ public class Profile extends JFrame {
 
 
 
-
+JButton UpdateButton = new JButton("Update");
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel nameLabel = new JLabel("Name");
@@ -26,14 +26,17 @@ JPanel WishlistPanel = new JPanel();
 JPanel add_to_cartPanal = new JPanel();
 
 
-    JButton updateButton = new JButton("Update");
+
 
     public Profile(User user) {
 this.Email = user.getEmail();
-setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        frame.setTitle("Profile");
 
-        panel.setLayout(null);
+setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
+
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+
+
 nameLabel.setText("Name: "+user.getName());
         nameLabel.setBounds(10, 20, 150, 25);
         panel.add(nameLabel);
@@ -42,12 +45,16 @@ nameLabel.setText("Name: "+user.getName());
 emailLabel.setText("Email: "+user.getEmail());
         emailLabel.setBounds(10, 50, 150, 25);
         panel.add(emailLabel);
-
-
+        UpdateButton.addActionListener(e->{
+            update_profile();
+        });
 
         frame.setSize(1000, 700);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
         WishlistPanel.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
+
+
         ArrayList<Product> products = get_wishlist_items();
         for (int i = 0; i < products.size(); i++) {
             ProductCard productCard = new ProductCard(products.get(i));
@@ -91,25 +98,29 @@ emailLabel.setText("Email: "+user.getEmail());
                 }
             });
             WishlistPanel.add(productCard);
-        }  frame.add(panel);
+        }  panel.add(UpdateButton);
+        frame.add(panel);
         JLabel wishlistlable = new JLabel("Wishlist" , SwingConstants.CENTER);
         wishlistlable.setSize(800,50);
-        frame.add(wishlistlable);
-        frame.add(WishlistPanel);
+
+       frame.add(WishlistPanel);
 
 
 
 
         frame.setResizable(false);
-        updateButton.setBounds(10, 110, 80, 25);
-        panel.add(updateButton);
-        getRootPane().setDefaultButton(updateButton);
+
+
+
         frame.setVisible(true);
     }
-
+//-----------------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
         new Profile(new User("chamn", "chaman@123", "123456", "user"));
     }
+
+
+
     public ArrayList<Product> get_wishlist_items()
     {
         try
@@ -160,6 +171,69 @@ emailLabel.setText("Email: "+user.getEmail());
         {e.printStackTrace();
         }
 return  new ArrayList<Product>();
+
+    }
+
+
+    public void update_profile()
+    {
+     JFrame popupMenu = new JFrame();
+        JTextField nameField = new JTextField();
+        JTextField emailField = new JTextField();
+        emailField.setSize(200,50);
+        nameField.setSize(200,50);
+        JButton updateButton = new JButton("Update");
+        JPanel panel = new JPanel();
+        popupMenu.setSize(400, 400);
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
+        panel.add(new JLabel("Name"));
+
+        panel.add(nameField);
+        panel.add(new JLabel("Email"));
+        panel.add(emailField);
+        panel.add(updateButton);
+
+
+popupMenu.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        popupMenu.add(panel);
+      popupMenu.setVisible(true);
+
+
+        updateButton.addActionListener(e->{
+            if(nameField.getText().equals("") || emailField.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this,"Please fill all the fields");
+                return;
+            }
+            try {
+                Connection con = new Connection_instance().get_connection();
+                PreparedStatement pst = con.prepareStatement("select * from user where email = ?");
+                pst.setString(1,emailField.getText());
+                ResultSet rs = pst.executeQuery();
+                if (rs.next())
+                {
+                    JOptionPane.showMessageDialog(this,"Email already exist");
+                    return;
+                }
+
+
+
+                PreparedStatement pst1 = con.prepareStatement("update user set name = ? , email = ?  where email = ?");
+                pst1.setString(1,nameField.getText());
+                pst1.setString(2,emailField.getText());
+
+                pst1.setString(3,Email);
+                pst1.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Profile Updated");
+            }
+            catch (Exception e1)
+            {
+                e1.printStackTrace();
+            }
+        });
+
+
+
 
     }
 

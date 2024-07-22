@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class Signup extends JFrame {
+    String role ;
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
     JLabel userLabel = new JLabel("Username");
@@ -21,6 +22,11 @@ public class Signup extends JFrame {
     JButton signupButton = new JButton("Signup");
     Signup()
     {
+
+    }
+    Signup(String role)
+    {
+        this.role = role;
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
@@ -71,8 +77,8 @@ public class Signup extends JFrame {
             {
               if(!checkEmail(email)) {
                   JOptionPane.showMessageDialog(null, "Signup Successful");
-                  new Add_User().add_user(user, email, password, "user");
-                  new Deshboard(new User(user, email, password, "user"));
+                  new Add_User().add_user(user, email, password, role);
+                  new Deshboard(new User(user, email, password, role));
               }
               else {
                   userField.setText("");
@@ -84,6 +90,7 @@ public class Signup extends JFrame {
         });
         frame.setVisible(true);
     }
+
 boolean checkEmail(String email)
 {
     try (Connection con = new Connection_instance().get_connection()) {

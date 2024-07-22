@@ -11,14 +11,14 @@ import java.awt.*;
 
 public class ProductCard extends JPanel {
 
-    private JLabel imageLabel;
+     JLabel imageLabel;
     private JLabel titleLabel;
     private JLabel priceLabel;
     JButton addToCartButton;
      JButton addToWishlistButton;
 
     public ProductCard(Product product) {
-
+        UIManager.put( "Button.arc", 999 );
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 

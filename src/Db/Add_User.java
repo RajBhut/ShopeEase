@@ -14,36 +14,36 @@ public class Add_User {
         Connection con = null;
         try {
             con = new Connection_instance().get_connection();
-            con.setAutoCommit(false); // start transaction
+                con.setAutoCommit(false); // start transaction
 
-            PreparedStatement stmt = con.prepareStatement("insert into user (name , email , password , role) values(?,?,?,?)");
-            stmt.setString(1,name);
-            stmt.setString(2,email);
-            stmt.setString(3,password);
-            stmt.setString(4,role);
+                PreparedStatement stmt = con.prepareStatement("insert into user (name , email , password , role) values(?,?,?,?)");
+                stmt.setString(1,name);
+                stmt.setString(2,email);
+                stmt.setString(3,password);
+                stmt.setString(4,role);
 
-            stmt.executeUpdate();
+                stmt.executeUpdate();
 
-            User user = new User(name,email,password,role);
+                User user = new User(name,email,password,role);
 
-            con.commit();
-        } catch (SQLException e) {
-            if (con != null) {
-                try {
-                    System.err.print("Transaction is being rolled back");
-                    con.rollback();
-                } catch(SQLException excep) {
-                    excep.printStackTrace();
+                con.commit();
+            } catch (SQLException e) {
+                if (con != null) {
+                    try {
+                        System.err.print("Transaction is being rolled back");
+                        con.rollback();
+                    } catch(SQLException excep) {
+                        excep.printStackTrace();
+                    }
+                }
+            } finally {
+                if (con != null) {
+                    try {
+                        con.setAutoCommit(true);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-        } finally {
-            if (con != null) {
-                try {
-                    con.setAutoCommit(true);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }
