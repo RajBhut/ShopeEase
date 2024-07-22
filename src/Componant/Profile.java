@@ -6,10 +6,13 @@ import Db.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Profile extends JFrame {
     String Email ;
@@ -24,6 +27,11 @@ JButton UpdateButton = new JButton("Update");
     JLabel emailLabel = new JLabel("Email");
 JPanel WishlistPanel = new JPanel();
 JPanel add_to_cartPanal = new JPanel();
+JPanel My_productPanel = new JPanel();
+JPanel My_orderPanel = new JPanel();
+JScrollPane wishlistScroll = new JScrollPane(WishlistPanel);
+JScrollPane add_to_cartScroll = new JScrollPane(add_to_cartPanal);
+JScrollPane My_productScroll = new JScrollPane(My_productPanel);
 
 
 
@@ -31,32 +39,101 @@ JPanel add_to_cartPanal = new JPanel();
     public Profile(User user) {
 this.Email = user.getEmail();
 
-setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
+frame.setLayout(new FlowLayout());
 
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
 
 nameLabel.setText("Name: "+user.getName());
-        nameLabel.setBounds(10, 20, 150, 25);
+        nameLabel.setSize( 800, 25);
         panel.add(nameLabel);
 
 
 emailLabel.setText("Email: "+user.getEmail());
-        emailLabel.setBounds(10, 50, 150, 25);
+        emailLabel.setSize(150, 25);
         panel.add(emailLabel);
         UpdateButton.addActionListener(e->{
             update_profile();
         });
+        panel.setPreferredSize(new Dimension(1200, 40));
+        panel.setBackground(Color.white);
 
-        frame.setSize(1000, 700);
+        frame.setSize(1300, 900);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
         WishlistPanel.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
-
+        add_to_cartPanal.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
+WishlistPanel.setBackground(Color.cyan);
 
         ArrayList<Product> products = get_wishlist_items();
-        for (int i = 0; i < products.size(); i++) {
+        ArrayList<Product> add_to_cart = get_add_to_cart();
+        frame.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+
+
+                Dimension newSize = new Dimension(1200 , products.size()*90 + 50);
+Dimension cartsize = new Dimension(1200 , add_to_cart.size()*90 + 50);
+
+                WishlistPanel.setPreferredSize(newSize);
+add_to_cartPanal.setPreferredSize(cartsize);
+
+                WishlistPanel.revalidate();
+                add_to_cartPanal.revalidate();
+            }
+        });
+
+
+
+        for (int i = add_to_cart.size()-1  ; i >= 0 ; i--) {
+            ProductCard productCard = new ProductCard(add_to_cart.get(i));
+            productCard.remove(productCard.addToWishlistButton);
+            productCard.addToCartButton.setText("Remove from cart");
+            int finalI = i;
+            productCard.addToCartButton.addActionListener(e->{
+                try {
+                    Connection con = new Connection_instance().get_connection();
+                    PreparedStatement pst = con.prepareStatement("select id from user where email = ?");
+                    pst.setString(1,Email);
+                    int user_id = 0;
+                    ResultSet rs = pst.executeQuery();
+                    while (rs.next())
+                    {
+                        user_id = rs.getInt("id");
+                    }
+                    pst = con.prepareStatement("select id from product where name = ?");
+                    pst.setString(1,add_to_cart.get(finalI).getName());
+                    rs = pst.executeQuery();
+                    int product_id = 0;
+                    while (rs.next())
+                    {
+                        product_id = rs.getInt("id");
+                    }
+
+
+                            pst = con.prepareStatement("delete from addcart where product_id = ? and user_id = ?");
+                            pst.setInt(1, product_id);
+                            pst.setInt(2,user_id);
+
+                            pst.executeUpdate();
+                            add_to_cartPanal.remove(productCard);
+                            add_to_cart.remove(finalI);
+                            add_to_cartPanal.revalidate();
+                            add_to_cartPanal.repaint();
+
+
+                }
+                catch (Exception e1)
+                {
+                    e1.printStackTrace();
+                }
+            });
+            add_to_cartPanal.add(productCard);
+        }
+
+        for (int i = products.size()-1; i >=0; i--)
+        {
             ProductCard productCard = new ProductCard(products.get(i));
             productCard.addToWishlistButton.setText("Remove from Wishlist");
             int finalI = i;
@@ -71,26 +148,25 @@ emailLabel.setText("Email: "+user.getEmail());
                     {
                         user_id = rs.getInt("id");
                     }
-                    pst = con.prepareStatement("select * from wishlist where user_id = ?");
-                    pst.setInt(1,user_id);
+                    pst = con.prepareStatement("select id from product where name = ?");
+                    pst.setString(1,products.get(finalI).getName());
                     rs = pst.executeQuery();
-                    ArrayList <Integer> wishlist = new ArrayList<>();
+                    int product_id = 0;
                     while (rs.next())
                     {
-                        wishlist.add(rs.getInt("product_id"));
+                        product_id = rs.getInt("id");
                     }
-                    for (int j = 0; j < wishlist.size(); j++) {
-                        if (products.get(finalI).getName().equals(products.get(j).getName()))
-                        {
+
                             pst = con.prepareStatement("delete from wishlist where product_id = ? and user_id = ?");
-                            pst.setInt(1,wishlist.get(j));
+                           pst.setInt(1, product_id);
                             pst.setInt(2,user_id);
                             pst.executeUpdate();
                             WishlistPanel.remove(productCard);
+                            products.remove(finalI);
                             WishlistPanel.revalidate();
                             WishlistPanel.repaint();
-                        }
-                    }
+
+
                 }
                 catch (Exception e1)
                 {
@@ -98,12 +174,29 @@ emailLabel.setText("Email: "+user.getEmail());
                 }
             });
             WishlistPanel.add(productCard);
-        }  panel.add(UpdateButton);
-        frame.add(panel);
+        }
+        panel.add(UpdateButton);
+        panel.setPreferredSize(new Dimension(1200, 50));
+
         JLabel wishlistlable = new JLabel("Wishlist" , SwingConstants.CENTER);
         wishlistlable.setSize(800,50);
+frame.add(wishlistlable);
+        frame.add(panel);
 
-       frame.add(WishlistPanel);
+        wishlistScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        wishlistScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        wishlistScroll.getVerticalScrollBar().setUnitIncrement(10);
+        wishlistScroll.setPreferredSize(new Dimension( 1200, 200));
+        wishlistScroll.setViewportView(WishlistPanel);
+        frame.add(wishlistScroll);
+ add_to_cartScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+          add_to_cartScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        add_to_cartScroll.getVerticalScrollBar().setUnitIncrement(10);
+            add_to_cartScroll.setPreferredSize( new Dimension(1200, 200));
+            add_to_cartScroll.setBackground(Color.white);
+        add_to_cartScroll.setViewportView(add_to_cartPanal);
+        frame.add(add_to_cartScroll);
+
 
 
 
@@ -116,9 +209,68 @@ emailLabel.setText("Email: "+user.getEmail());
     }
 //-----------------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-        new Profile(new User("chamn", "chaman@123", "123456", "user"));
+        try {
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
+        new Profile(new User("seler1", "sel1", "123", "seller"));
     }
 
+
+
+    public ArrayList<Product> get_add_to_cart()
+    {
+        try
+        {
+            Connection con = new  Connection_instance().get_connection();
+            PreparedStatement pst = con.prepareStatement("select id from user where email = ?");
+            pst.setString(1,Email);
+            int user_id = 0;
+            ResultSet rs = pst.executeQuery();
+            while (rs.next())
+            {
+                user_id = rs.getInt("id");
+            }
+            pst = con.prepareStatement("select * from addcart where user_id = ?");
+            pst.setInt(1,user_id);
+            rs = pst.executeQuery();
+            ArrayList <Integer> addcart = new ArrayList<>();
+            while (rs.next())
+            {
+                addcart.add(rs.getInt("product_id"));
+            }
+            ArrayList<Product> products = new ArrayList<>();
+            for (int i = 0; i < addcart.size(); i++) {
+                pst = con.prepareStatement("select * from product where id = ?");
+                pst.setInt(1,addcart.get(i));
+                rs = pst.executeQuery();
+                while (rs.next())
+                {
+                    PreparedStatement pst2 = con.prepareStatement("select * from producttag where product_id = ?");
+                    pst2.setInt(1,rs.getInt("id"));
+                    ResultSet rs2 = pst2.executeQuery();
+                    ArrayList<String> tags = new ArrayList<>();
+                    while (rs2.next()){
+                        PreparedStatement pst3 = con.prepareStatement("select * from tag where id = ?");
+                        pst3.setInt(1,rs2.getInt("tag_id"));
+                        ResultSet rs3 = pst3.executeQuery();
+                        while (rs3.next()){
+                            tags.add(rs3.getString("tag_name"));
+                        }
+                    }
+                    Product product = new Product(rs.getString("name"),rs.getInt("price"),rs.getInt("quantity"),tags,rs.getInt("discount"),rs.getString("imagePath"));
+                    products.add(product);
+                }
+            }
+            return products;
+        }
+        catch (Exception e)
+        {e.printStackTrace();
+        }
+        return  new ArrayList<Product>();
+
+    }
 
 
     public ArrayList<Product> get_wishlist_items()

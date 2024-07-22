@@ -34,6 +34,7 @@ public class Deshboard extends JFrame {
     JButton exitButton = new JButton(" 🚪  Exit ");
     JPanel menuPanel;
     JPanel searchPanel;
+    JButton MyProductButton = new JButton(" 🛒 My Products");
     private JPanel productPanel;
 
     public Deshboard(User current_user) {
@@ -71,7 +72,12 @@ public class Deshboard extends JFrame {
         menuPanel.add(aboutButton);
 
         menuPanel.add(exitButton);
-
+if(user.getRole().equals("seller")){
+    menuPanel.add(MyProductButton);
+    MyProductButton.addActionListener(e -> {
+        new Profile(user);
+    });
+}
 
         menuPanel.setBackground(new Color(66, 64, 64, 255));
         menuPanel.setPreferredSize(new Dimension(800, 60));
@@ -96,7 +102,7 @@ public class Deshboard extends JFrame {
         helpButton.setMargin(new Insets(10, 10, 10, 10));
         exitButton.setMargin(new Insets(10, 10, 10, 10));
         aboutButton.setMargin(new Insets(10, 10, 10, 10));
-
+MyProductButton.setMargin(new Insets(10, 10, 10, 10));
         JButton searchButton = new JButton("Search");
         searchButton.setPreferredSize(new Dimension(100, 30));
         searchButton.setBorder(new CompoundBorder(new EmptyBorder(5, 10, 5, 10), new RoundedBorder(8)));

@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add deshboard v2">
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Componant/Product_Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SellerSignup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resorce/searchlogo.jpg" afterDir="false" />
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add seller v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/gui.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componant/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/ProductCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componant/Product_add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Product_add.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Db/Add_User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Db/Add_User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Signup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Signup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resorce/shopping-paper-bags-icon-isolated/JEMA GER 1722-04.eps" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721325476253</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add seller v1">
+      <option name="closed" value="true" />
+      <created>1721652644909</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721652644909</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +206,7 @@
     <MESSAGE value="add product v2" />
     <MESSAGE value="add product v3" />
     <MESSAGE value="add deshboard v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="add deshboard v2" />
+    <MESSAGE value="add seller v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="add seller v1" />
   </component>
 </project>
