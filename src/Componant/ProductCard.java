@@ -10,13 +10,14 @@ import java.awt.*;
 
 
 public class ProductCard extends JPanel {
-
+    JSpinner spinner;
      JLabel imageLabel;
-    private JLabel titleLabel;
-    private JLabel priceLabel;
+    JLabel titleLabel;
+    JLabel priceLabel;
     JButton addToCartButton;
      JButton addToWishlistButton;
-
+    JPanel detailsPanel;
+    JPanel details;
     public ProductCard(Product product) {
         UIManager.put( "Button.arc", 999 );
         setLayout(new GridBagLayout());
@@ -30,7 +31,7 @@ public class ProductCard extends JPanel {
         Image scaledImage = image.getScaledInstance(imageLabel.getPreferredSize().width, -1, Image.SCALE_SMOOTH);
         imageLabel.setIcon(new ImageIcon(scaledImage));
 
-        JPanel detailsPanel = new JPanel(new BorderLayout());
+         detailsPanel = new JPanel(new BorderLayout());
 
 
         titleLabel = new JLabel(product.getName());
@@ -62,7 +63,19 @@ addToWishlistButton.setSize(80,50);
 addToCartButton.setSize(80,50);
 
         detailsPanel.add(titleLabel, BorderLayout.NORTH);
-        detailsPanel.add(priceLabel, BorderLayout.SOUTH);
+        priceLabel.setPreferredSize(new Dimension(50, 20));
+
+         spinner = new JSpinner(new SpinnerNumberModel(1, 1, product.getQuantity(), 1));
+        spinner.setPreferredSize(new Dimension(50, 20));
+         details = new JPanel();
+
+        details.setLayout(new FlowLayout());
+        details.add(priceLabel);
+        details.add(spinner);
+
+
+
+        detailsPanel.add(details, BorderLayout.SOUTH);
         detailsPanel.add(addToCartButton, BorderLayout.WEST);
         detailsPanel.add(Box.createRigidArea(new Dimension(10, 5)), BorderLayout.CENTER);
 

@@ -19,7 +19,7 @@ JPanel Imagecontainer ;
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         scrollPane = new JScrollPane(panel);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
         imagePanel = new ImagePanel(product.getImagePath());
         Imagecontainer = new JPanel(new GridBagLayout());
@@ -36,24 +36,19 @@ JPanel Imagecontainer ;
         Imagecontainer.setPreferredSize(new Dimension(450, 500));
         Imagecontainer.setBorder(BorderFactory.createLineBorder(Color.black));
      panel.add(Imagecontainer);
-        panel.add(new JLabel(product.getName()));
-        panel.add(new JLabel(product.getPrice() + "₹"));
-        panel.add(new JLabel(product.getQuantity() + " left"));
-        panel.add(new JLabel(product.getDiscount() + "% off"));
-        panel.add(new JLabel(product.getPrice() + "₹"));
-        panel.add(new JLabel(product.getQuantity() + " left"));
-        panel.add(new JLabel(product.getDiscount() + "% off"));
-        panel.add(new JLabel(product.getPrice() + "₹"));
-        panel.add(new JLabel(product.getQuantity() + " left"));
-        panel.add(new JLabel(product.getPrice() + "₹"));
-        panel.add(new JLabel(product.getQuantity() + " left"));
-        panel.add(new JLabel(product.getDiscount() + "% off"));
-        panel.add(new JLabel(product.getDiscount() + "% off"));
+
+     panel.add(new JLabel("Name: "+product.getName()));
+        panel.add(new JLabel("Price: "+product.getPrice()));
+        panel.add(new JLabel("Quantity: "+product.getQuantity()));
+        panel.add(new JLabel("Discount: "+product.getDiscount()));
+        panel.add(new JLabel("Tags: "+product.getTags()));
+
 panel.setPreferredSize(new Dimension(1200, 800));
-      //  panel.add(new JLabel(product.getTags().toString()));
+     scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setVisible(true);
 
 

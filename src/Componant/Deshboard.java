@@ -117,7 +117,7 @@ MyProductButton.setMargin(new Insets(10, 10, 10, 10));
         for (int i = 0; i < products.size(); i++) {
             ProductCard productCard = new ProductCard(products.get(i));
             productCard.setBorder(new EmptyBorder(10, 5, 10, 5));
-
+productCard.spinner.setVisible(false);
             int finalI = i;
             productCard.addToWishlistButton.addActionListener(e -> {
                 new Product_add(false).Add_to_Wishlist(user.getName(), products.get(finalI).getName());
@@ -140,7 +140,7 @@ MyProductButton.setMargin(new Insets(10, 10, 10, 10));
                                              @Override
                                              public void mouseClicked(MouseEvent e) {
                                                  super.mouseClicked(e);
-                                                 System.out.println("clicked");
+                                           new Product_Main(products.get(finalI));
                                              }
 
                                              public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -339,6 +339,11 @@ productkeeper = new JScrollPane(productPanel);
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
         new Deshboard(new User("admin", "admin", "admin", "admin"));
     }
 }

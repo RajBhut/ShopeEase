@@ -32,7 +32,7 @@ JPanel My_orderPanel = new JPanel();
 JScrollPane wishlistScroll = new JScrollPane(WishlistPanel);
 JScrollPane add_to_cartScroll = new JScrollPane(add_to_cartPanal);
 JScrollPane My_productScroll = new JScrollPane(My_productPanel);
-
+JButton buy = new JButton("Buy");
 
 
 
@@ -73,8 +73,8 @@ WishlistPanel.setBackground(Color.cyan);
             public void componentResized(ComponentEvent e) {
 
 
-                Dimension newSize = new Dimension(1200 , products.size()*90 + 50);
-Dimension cartsize = new Dimension(1200 , add_to_cart.size()*90 + 50);
+                Dimension newSize = new Dimension(1250 , products.size()*90 + 50);
+Dimension cartsize = new Dimension(1250 , add_to_cart.size()*90 + 50);
 
                 WishlistPanel.setPreferredSize(newSize);
 add_to_cartPanal.setPreferredSize(cartsize);
@@ -88,8 +88,9 @@ add_to_cartPanal.setPreferredSize(cartsize);
 
         for (int i = add_to_cart.size()-1  ; i >= 0 ; i--) {
             Product current = add_to_cart.get(i);
-            ProductCard productCard = new ProductCard(add_to_cart.get(i));
 
+            ProductCard productCard = new ProductCard(add_to_cart.get(i));
+productCard.spinner.setVisible(false);
             productCard.addToWishlistButton.setVisible(false);
             productCard.addToCartButton.setText("Remove from cart");
 
@@ -141,7 +142,7 @@ add_to_cartPanal.setPreferredSize(cartsize);
         for (int i = products.size()-1; i >=0; i--)
         {  Product current = products.get(i);
             ProductCard productCard = new ProductCard(products.get(i));
-
+productCard.spinner.setVisible(false);
             productCard.addToCartButton.setVisible(false);
             productCard.addToWishlistButton.setText("Remove from Wishlist");
 
@@ -188,7 +189,7 @@ add_to_cartPanal.setPreferredSize(cartsize);
             WishlistPanel.add(productCard);
         }
         panel.add(UpdateButton);
-        panel.setPreferredSize(new Dimension(1200, 50));
+        panel.setPreferredSize(new Dimension(1250, 50));
 
         JLabel wishlistlable = new JLabel("Wishlist" , SwingConstants.CENTER);
         wishlistlable.setSize(800,50);
@@ -198,17 +199,28 @@ frame.add(wishlistlable);
         wishlistScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         wishlistScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         wishlistScroll.getVerticalScrollBar().setUnitIncrement(10);
-        wishlistScroll.setPreferredSize(new Dimension( 1200, 200));
+        wishlistScroll.setPreferredSize(new Dimension( 1250, 200));
         wishlistScroll.setViewportView(WishlistPanel);
         frame.add(wishlistScroll);
  add_to_cartScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
           add_to_cartScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add_to_cartScroll.getVerticalScrollBar().setUnitIncrement(10);
-            add_to_cartScroll.setPreferredSize( new Dimension(1200, 200));
+            add_to_cartScroll.setPreferredSize( new Dimension(1250, 200));
             add_to_cartScroll.setBackground(Color.white);
         add_to_cartScroll.setViewportView(add_to_cartPanal);
         frame.add(add_to_cartScroll);
+buy.addActionListener(e->{
+    new Buy_page(Email , add_to_cart);
 
+        JLabel cartlable = new JLabel("Cart" , SwingConstants.CENTER);
+        cartlable.setSize(800,50);
+        frame.add(cartlable);
+        frame.add(My_productScroll);
+        frame.add(My_orderPanel);
+        frame.add(My_productPanel);
+
+});
+        frame.add(buy);
 
 
 
