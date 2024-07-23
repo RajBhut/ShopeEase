@@ -87,10 +87,12 @@ add_to_cartPanal.setPreferredSize(cartsize);
 
 
         for (int i = add_to_cart.size()-1  ; i >= 0 ; i--) {
+            Product current = add_to_cart.get(i);
             ProductCard productCard = new ProductCard(add_to_cart.get(i));
-            productCard.remove(productCard.addToWishlistButton);
+
+            productCard.addToWishlistButton.setVisible(false);
             productCard.addToCartButton.setText("Remove from cart");
-            int finalI = i;
+
             productCard.addToCartButton.addActionListener(e->{
                 try {
                     Connection con = new Connection_instance().get_connection();
@@ -103,7 +105,7 @@ add_to_cartPanal.setPreferredSize(cartsize);
                         user_id = rs.getInt("id");
                     }
                     pst = con.prepareStatement("select id from product where name = ?");
-                    pst.setString(1,add_to_cart.get(finalI).getName());
+                    pst.setString(1,current.getName());
                     rs = pst.executeQuery();
                     int product_id = 0;
                     while (rs.next())
@@ -118,7 +120,9 @@ add_to_cartPanal.setPreferredSize(cartsize);
 
                             pst.executeUpdate();
                             add_to_cartPanal.remove(productCard);
-                            add_to_cart.remove(finalI);
+
+                            add_to_cart.remove(current);
+
                             add_to_cartPanal.revalidate();
                             add_to_cartPanal.repaint();
 
@@ -127,16 +131,20 @@ add_to_cartPanal.setPreferredSize(cartsize);
                 catch (Exception e1)
                 {
                     e1.printStackTrace();
+                    add_to_cartPanal.revalidate();
+                    add_to_cartPanal.repaint();
                 }
             });
             add_to_cartPanal.add(productCard);
         }
 
         for (int i = products.size()-1; i >=0; i--)
-        {
+        {  Product current = products.get(i);
             ProductCard productCard = new ProductCard(products.get(i));
+
+            productCard.addToCartButton.setVisible(false);
             productCard.addToWishlistButton.setText("Remove from Wishlist");
-            int finalI = i;
+
             productCard.addToWishlistButton.addActionListener(e->{
                 try {
                     Connection con = new Connection_instance().get_connection();
@@ -149,7 +157,7 @@ add_to_cartPanal.setPreferredSize(cartsize);
                         user_id = rs.getInt("id");
                     }
                     pst = con.prepareStatement("select id from product where name = ?");
-                    pst.setString(1,products.get(finalI).getName());
+                    pst.setString(1,current.getName());
                     rs = pst.executeQuery();
                     int product_id = 0;
                     while (rs.next())
@@ -162,7 +170,9 @@ add_to_cartPanal.setPreferredSize(cartsize);
                             pst.setInt(2,user_id);
                             pst.executeUpdate();
                             WishlistPanel.remove(productCard);
-                            products.remove(finalI);
+
+                            products.remove(current);
+
                             WishlistPanel.revalidate();
                             WishlistPanel.repaint();
 
@@ -171,6 +181,8 @@ add_to_cartPanal.setPreferredSize(cartsize);
                 catch (Exception e1)
                 {
                     e1.printStackTrace();
+                    WishlistPanel.revalidate();
+                    WishlistPanel.repaint();
                 }
             });
             WishlistPanel.add(productCard);

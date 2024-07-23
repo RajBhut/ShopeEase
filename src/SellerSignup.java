@@ -4,15 +4,16 @@ import Db.Connection_instance;
 import Db.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.EnumMap;
+
 
 public class SellerSignup extends JFrame {
-    String role ;
+    String role;
     JFrame frame = new JFrame();
-    JPanel panel = new JPanel();
+    JPanel panel;
     JLabel userLabel = new JLabel("Username");
     JLabel passwordLabel = new JLabel("Password");
     JTextField userField = new JTextField();
@@ -24,18 +25,24 @@ public class SellerSignup extends JFrame {
     JButton signupButton = new JButton("Signup");
     JLabel ContectInfo = new JLabel("Contect Info.");
     JTextField Contextfield = new JTextField();
-    SellerSignup()
-    {
+    ImageIcon icon = new ImageIcon("src/resorce/network-mesh-wire-digital-technology-background/17973908.jpg");
+
+    JLabel background = new JLabel(icon);
+
+    SellerSignup() {
 
     }
-    SellerSignup(String role)
-    {
+
+    SellerSignup(String role) {
+
         this.role = role;
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-        panel.setLayout(null);
 
+
+        ImageIcon icon = new ImageIcon("src/resorce/network-mesh-wire-digital-technology-background/17973908.jpg");
+        ImagePanel panel = new ImagePanel(icon.getImage());
+        panel.setLayout(null);
         userLabel.setBounds(100, 120, 100, 25);
         panel.add(userLabel);
 
@@ -59,39 +66,36 @@ public class SellerSignup extends JFrame {
 
         confirmPasswordField.setBounds(220, 210, 165, 25);
         panel.add(confirmPasswordField);
-        Contextfield.setBounds(220,240,165,25);
-        ContectInfo.setBounds(100,240,100,25);
-panel.add(ContectInfo);
-panel.add(Contextfield);
+
+        Contextfield.setBounds(220, 240, 165, 25);
+        ContectInfo.setBounds(100, 240, 100, 25);
+        panel.add(ContectInfo);
+        panel.add(Contextfield);
+
         frame.setResizable(false);
-        signupButton.setBounds(200, 270, 100, 25);
+        signupButton.setBounds(200, 290, 100, 25);
         panel.add(signupButton);
+
+        frame.add(panel);
         signupButton.addActionListener(e -> {
             String user = userField.getText();
             String password = passwordField.getText();
             String confirmPassword = confirmPasswordField.getText();
             String email = EmailField.getText();
             String contect = Contextfield.getText();
-            if(user.equals("") || password.equals("") || confirmPassword.equals("") || email.equals("")||contect.equals(""))
-            {
+            if (user.equals("") || password.equals("") || confirmPassword.equals("") || email.equals("") || contect.equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill all the fields");
-            }
-            else if(!password.equals(confirmPassword))
-            {
+            } else if (!password.equals(confirmPassword)) {
                 JOptionPane.showMessageDialog(null, "Passwords do not match");
-            }
-
-            else
-            {
-                if(!checkEmail(email)) {
+            } else {
+                if (!checkEmail(email)) {
 
                     JOptionPane.showMessageDialog(null, "Signup Successful");
-                   if(Add_seller(user,email,password,contect)) {
-                       new Add_User().add_user(user, email, password, role);
-                       new Deshboard(new User(user, email, password, role));
-                   }
-                   }
-                else {
+                    if (Add_seller(user, email, password, contect)) {
+                        new Add_User().add_user(user, email, password, role);
+                        new Deshboard(new User(user, email, password, role));
+                    }
+                } else {
                     userField.setText("");
                     passwordField.setText("");
                     confirmPasswordField.setText("");
@@ -102,44 +106,41 @@ panel.add(Contextfield);
         frame.setVisible(true);
     }
 
-    boolean checkEmail(String email)
-    {
+    boolean checkEmail(String email) {
         try (Connection con = new Connection_instance().get_connection()) {
             PreparedStatement pst = con.prepareStatement("select * from user where email = ?");
             pst.setString(1, email);
-            if(pst.executeQuery().next())
-            {
+            if (pst.executeQuery().next()) {
                 JOptionPane.showMessageDialog(null, "Email already exists");
                 return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
             return true;
-        }return  false;
+        }
+        return false;
     }
-    boolean Add_seller(String name , String email , String password , String contect)
-    {
+
+    boolean Add_seller(String name, String email, String password, String contect) {
         Connection con = null;
-       try {
-           con = new Connection_instance().get_connection();
+        try {
+            con = new Connection_instance().get_connection();
             con.setAutoCommit(false);
 
             PreparedStatement stmt = con.prepareStatement("insert into seller (name , contact_info  , password) values(?,?,?)");
-            stmt.setString(1,name);
-            stmt.setString(2,contect);
-            stmt.setString(3,password);
+            stmt.setString(1, name);
+            stmt.setString(2, contect);
+            stmt.setString(3, password);
 
 
             stmt.executeUpdate();
-
 
 
             con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-            }
-        finally {
+        } finally {
             if (con != null) {
                 try {
                     con.setAutoCommit(true);
@@ -148,16 +149,32 @@ panel.add(Contextfield);
                 }
             }
         }
-       return true;
+        return true;
     }
 
     public static void main(String[] args) {
         try {
-            UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf()  );
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+            UIManager.put( "TextComponent.arc", 10 );
+            UIManager.put( "Button.arc", 600  );
         } catch (UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
         new SellerSignup("seller");
     }
 
+}
+
+class ImagePanel extends JPanel {
+    private Image image;
+
+    public ImagePanel(Image image) {
+        this.image = image;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
+    }
 }

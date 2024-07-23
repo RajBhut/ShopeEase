@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add seller v1">
+    <list default="true" id="568c4a2a-36c6-419f-991c-7e4d3241e5c4" name="Changes" comment="add and remove  complete for profile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Componant/Deshboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Deshboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Componant/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Componant/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SellerSignup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SellerSignup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721652644909</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add and remove  complete for profile">
+      <option name="closed" value="true" />
+      <created>1721669743145</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721669743145</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,6 +215,7 @@
     <MESSAGE value="add product v3" />
     <MESSAGE value="add deshboard v2" />
     <MESSAGE value="add seller v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="add seller v1" />
+    <MESSAGE value="add and remove  complete for profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="add and remove  complete for profile" />
   </component>
 </project>
