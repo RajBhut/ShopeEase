@@ -3,8 +3,9 @@ package Componant;
 import Db.Connection_instance;
 import Db.Product;
 import Db.User;
-
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -22,6 +23,11 @@ public class Profile extends JFrame {
 
 JButton UpdateButton = new JButton("Update");
     JFrame frame = new JFrame();
+    Color color1 = Color.decode("#dad8db");
+    Color color2 = Color.decode("#e0d2d7");
+    Color color3 = Color.decode("#e6cec8");
+    Color color4 = Color.decode("#dfcdb7");
+    Color color5 = Color.decode("#c7d1b1");
     JPanel panel = new JPanel();
     JLabel nameLabel = new JLabel("Name");
     JLabel emailLabel = new JLabel("Email");
@@ -40,6 +46,20 @@ JButton buy = new JButton("Buy");
 this.Email = user.getEmail();
 
 frame.setLayout(new FlowLayout());
+        try {
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+            UIManager.put("Button.arc", 999);
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        TestPanel testPanel = new TestPanel(color1, color2, color3, color4, color5);
+        testPanel.setLayout(new FlowLayout());
+
+
+        frame.setContentPane(testPanel);
+
 
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -56,7 +76,7 @@ emailLabel.setText("Email: "+user.getEmail());
         UpdateButton.addActionListener(e->{
             update_profile();
         });
-        panel.setPreferredSize(new Dimension(1200, 40));
+
         panel.setBackground(Color.white);
 
         frame.setSize(1300, 900);
@@ -64,19 +84,18 @@ emailLabel.setText("Email: "+user.getEmail());
 
         WishlistPanel.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
         add_to_cartPanal.setLayout(new FlowLayout(FlowLayout.LEFT , 5, 5));
-WishlistPanel.setBackground(Color.cyan);
+panel.setPreferredSize(new Dimension(1250, 100));
 
-        ArrayList<Product> products = get_wishlist_items();
-        ArrayList<Product> add_to_cart = get_add_to_cart();
-        frame.addComponentListener(new ComponentAdapter() {
+
+
+ArrayList<Product> products = get_wishlist_items();
+ArrayList<Product> add_to_cart = get_add_to_cart();
+frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-
-
-                Dimension newSize = new Dimension(1250 , products.size()*90 + 50);
+Dimension newSize = new Dimension(1250 , products.size()*90 + 50);
 Dimension cartsize = new Dimension(1250 , add_to_cart.size()*90 + 50);
-
-                WishlistPanel.setPreferredSize(newSize);
+WishlistPanel.setPreferredSize(newSize);
 add_to_cartPanal.setPreferredSize(cartsize);
 
                 WishlistPanel.revalidate();
@@ -114,8 +133,7 @@ productCard.spinner.setVisible(false);
                         product_id = rs.getInt("id");
                     }
 
-
-                            pst = con.prepareStatement("delete from addcart where product_id = ? and user_id = ?");
+ pst = con.prepareStatement("delete from addcart where product_id = ? and user_id = ?");
                             pst.setInt(1, product_id);
                             pst.setInt(2,user_id);
 
@@ -142,7 +160,7 @@ productCard.spinner.setVisible(false);
         for (int i = products.size()-1; i >=0; i--)
         {  Product current = products.get(i);
             ProductCard productCard = new ProductCard(products.get(i));
-productCard.spinner.setVisible(false);
+            productCard.spinner.setVisible(false);
             productCard.addToCartButton.setVisible(false);
             productCard.addToWishlistButton.setText("Remove from Wishlist");
 
@@ -189,41 +207,44 @@ productCard.spinner.setVisible(false);
             WishlistPanel.add(productCard);
         }
         panel.add(UpdateButton);
-        panel.setPreferredSize(new Dimension(1250, 50));
+
 
         JLabel wishlistlable = new JLabel("Wishlist" , SwingConstants.CENTER);
-        wishlistlable.setSize(800,50);
-frame.add(wishlistlable);
+        setDefaultFont(wishlistlable,new Font("Poppins", Font.BOLD, 20));
+        wishlistlable.setPreferredSize(new Dimension(1250,30));
         frame.add(panel);
+frame.add(wishlistlable);
+
 
         wishlistScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         wishlistScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         wishlistScroll.getVerticalScrollBar().setUnitIncrement(10);
-        wishlistScroll.setPreferredSize(new Dimension( 1250, 200));
+        wishlistScroll.setPreferredSize(new Dimension( 1250, 250));
         wishlistScroll.setViewportView(WishlistPanel);
+        wishlistScroll.setBorder(new CompoundBorder(new RoundedBorder(18),new EmptyBorder(5, 5, 5, 5)));
         frame.add(wishlistScroll);
- add_to_cartScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        JLabel addtocartlable = new JLabel("Add to carted Items" , SwingConstants.CENTER);
+        setDefaultFont(addtocartlable,new Font("Poppins", Font.BOLD, 20));
+        addtocartlable.setPreferredSize(new Dimension(1250,30));
+        frame.add(addtocartlable);
+        add_to_cartScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
           add_to_cartScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         add_to_cartScroll.getVerticalScrollBar().setUnitIncrement(10);
-            add_to_cartScroll.setPreferredSize( new Dimension(1250, 200));
+            add_to_cartScroll.setPreferredSize( new Dimension(1250, 250));
             add_to_cartScroll.setBackground(Color.white);
         add_to_cartScroll.setViewportView(add_to_cartPanal);
+        add_to_cartScroll.setBorder(new CompoundBorder(new RoundedBorder(18),new EmptyBorder(5, 5, 5, 5)));
         frame.add(add_to_cartScroll);
 buy.addActionListener(e->{
     new Buy_page(Email , add_to_cart);
 
-        JLabel cartlable = new JLabel("Cart" , SwingConstants.CENTER);
-        cartlable.setSize(800,50);
-        frame.add(cartlable);
-        frame.add(My_productScroll);
-        frame.add(My_orderPanel);
-        frame.add(My_productPanel);
-
 });
+UIManager.put("Button.arc", 999);
+        buy.setBackground(new Color(250, 249, 246));
+        buy.setBorder(new CompoundBorder(new RoundedBorder(18),new EmptyBorder(20, 0, 20, 0) ));
+buy.setPreferredSize(new Dimension(100,50));
         frame.add(buy);
-
-
-
 
         frame.setResizable(false);
 
@@ -235,6 +256,7 @@ buy.addActionListener(e->{
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+
         } catch (UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
@@ -413,5 +435,12 @@ popupMenu.setDefaultCloseOperation(HIDE_ON_CLOSE);
 
     }
 
-
+    public void setDefaultFont(Component component, Font font) {
+        component.setFont(font);
+        if (component instanceof Container) {
+            for (Component child : ((Container) component).getComponents()) {
+                setDefaultFont(child, font);
+            }
+        }
+    }
 }

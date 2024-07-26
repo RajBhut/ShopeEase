@@ -1,4 +1,5 @@
-import Componant.Deshboard;
+package Componant;
+
 import Db.Add_User;
 import Db.Connection_instance;
 import Db.User;
@@ -28,7 +29,7 @@ public class Signup extends JFrame {
     {
         this.role = role;
         frame.setSize(400, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.add(panel);
         panel.setLayout(null);
 

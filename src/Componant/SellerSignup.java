@@ -1,4 +1,5 @@
-import Componant.Deshboard;
+package Componant;
+
 import Db.Add_User;
 import Db.Connection_instance;
 import Db.User;
@@ -22,7 +23,7 @@ public class SellerSignup extends JFrame {
     JPasswordField confirmPasswordField = new JPasswordField();
     JLabel EmailLabel = new JLabel("Email");
     JTextField EmailField = new JTextField();
-    JButton signupButton = new JButton("Signup");
+    JButton signupButton = new JButton("Componant.Signup");
     JLabel ContectInfo = new JLabel("Contect Info.");
     JTextField Contextfield = new JTextField();
     ImageIcon icon = new ImageIcon("src/resorce/network-mesh-wire-digital-technology-background/17973908.jpg");
@@ -40,8 +41,8 @@ public class SellerSignup extends JFrame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        ImageIcon icon = new ImageIcon("src/resorce/network-mesh-wire-digital-technology-background/17973908.jpg");
-        ImagePanel panel = new ImagePanel(icon.getImage());
+
+        ImagePanel panel = new ImagePanel("src/resorce/network-mesh-wire-digital-technology-background/17973908.jpg");
         panel.setLayout(null);
         userLabel.setBounds(100, 120, 100, 25);
         panel.add(userLabel);
@@ -90,7 +91,7 @@ public class SellerSignup extends JFrame {
             } else {
                 if (!checkEmail(email)) {
 
-                    JOptionPane.showMessageDialog(null, "Signup Successful");
+                    JOptionPane.showMessageDialog(null, "Componant.Signup Successful");
                     if (Add_seller(user, email, password, contect)) {
                         new Add_User().add_user(user, email, password, role);
                         new Deshboard(new User(user, email, password, role));
@@ -165,16 +166,3 @@ public class SellerSignup extends JFrame {
 
 }
 
-class ImagePanel extends JPanel {
-    private Image image;
-
-    public ImagePanel(Image image) {
-        this.image = image;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image, 0, 0, this);
-    }
-}

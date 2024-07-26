@@ -5,6 +5,7 @@ import Db.Product;
 import Db.User;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -45,24 +46,16 @@ public class Deshboard extends JFrame {
             System.err.println("Failed to initialize LaF");
         }
         this.user = current_user;
+        menuPanel = new JPanel();
         frame.setSize(800, 800);
         productPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-
-
-
-
-
-
-
+        menuPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-        menuPanel = new JPanel();
-        menuPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        profileButton.addActionListener(e -> {
-            new Profile(user);
 
-        });
+
+
 
 
         menuPanel.add(profileButton);
@@ -158,16 +151,27 @@ productCard.spinner.setVisible(false);
         frame.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-
-
-                Dimension newSize = new Dimension(800 , products.size()*90);
-
-
-                productPanel.setPreferredSize(newSize);
-
-
-                productPanel.revalidate();
+        Dimension newSize = new Dimension(800 , products.size()*90);
+        productPanel.setPreferredSize(newSize);
+           productPanel.revalidate();
             }
+        });
+        profileButton.addActionListener(e -> {
+            new Profile(user);
+
+        });
+        logoutButton.addActionListener(e -> {
+
+            frame.setVisible(false);
+          new App();
+        });
+        exitButton.addActionListener(e -> {
+       int val =      JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+
+         if(val == JOptionPane.YES_OPTION){
+             JOptionPane.showMessageDialog(null,"Thank you for using our application");
+              System.exit(0);}
+
         });
 productkeeper = new JScrollPane(productPanel);
 

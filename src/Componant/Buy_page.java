@@ -33,7 +33,7 @@ Double total = 0.0;
 
         for (int i = 0 ; i < addToCart.size(); i++) {
             Product product = addToCart.get(i);
-
+total += product.getPrice();
             ProductCard productCard = new ProductCard(product);
             previousValues.put(productCard.spinner, 1);
 
@@ -48,9 +48,11 @@ Double total = 0.0;
                 if (quantity > previousValue) {
 
                     total += product.getPrice() * (quantity - previousValue);
+
                 } else if (quantity < previousValue) {
 
                     total -= product.getPrice() * (previousValue - quantity);
+
                 }
 
                 previousValues.put(productCard.spinner, quantity);
@@ -85,7 +87,7 @@ Double total = 0.0;
     }
 
     public static void main(String[] args) {
-        new Buy_page("kr",null);
+        new Buy_page("kr",new ArrayList<Product>());
     }
 
     public Buy_page() {
